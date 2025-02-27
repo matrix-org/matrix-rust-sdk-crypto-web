@@ -54,5 +54,4 @@ describe(PkDecryption.name, () => {
         const decrypted = restoredAlice.decryptString(message);
         expect(decrypted).toStrictEqual("It's a secret to everybody");
     });
-
 });
