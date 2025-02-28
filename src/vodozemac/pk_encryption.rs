@@ -8,7 +8,7 @@ use wasm_bindgen::prelude::*;
 
 use super::{Curve25519PublicKey, Curve25519SecretKey};
 
-/// A class representing an encrypted message using `PkEncryption`.
+/// A class representing an encrypted message using {@link PkEncryption}.
 #[wasm_bindgen]
 #[derive(Debug)]
 pub struct PkMessage {
@@ -67,7 +67,7 @@ impl PkMessage {
     }
 }
 
-/// The base64-encoded variant of a `PkMessage`.
+/// The base64-encoded variant of a {@link PkMessage}.
 ///
 /// This can be useful if the encrypted message should be put into JSON.
 #[wasm_bindgen(getter_with_clone)]
@@ -117,12 +117,12 @@ impl PkEncryption {
         Self { inner: pk_encryption::PkEncryption::from_key(public_key.inner) }
     }
 
-    /// Encrypts a byte message and returns an encrypted `PkMessage`.
+    /// Encrypts a byte message and returns an encrypted {@link PkMessage}.
     pub fn encrypt(&self, message: &[u8]) -> PkMessage {
         PkMessage { inner: self.inner.encrypt(message) }
     }
 
-    /// Encrypts a string message and returns an encrypted `PkMessage`.
+    /// Encrypts a string message and returns an encrypted {@link PkMessage}.
     #[wasm_bindgen(js_name = "encryptString")]
     pub fn encrypt_string(&self, message: &str) -> PkMessage {
         self.encrypt(message.as_bytes())
@@ -169,7 +169,7 @@ impl PkDecryption {
 
     /// Returns the public key associated with this decryption instance.
     ///
-    /// This can be used to construct a `PkEncryption` object to encrypt a
+    /// This can be used to construct a {@link PkEncryption} object to encrypt a
     /// message for this `PkDecryption` object.
     #[wasm_bindgen(js_name = "publicKey")]
     pub fn public_key(&self) -> Curve25519PublicKey {
