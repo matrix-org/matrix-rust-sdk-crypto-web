@@ -1,13 +1,5 @@
 //! This module provides public-key encryption and decryption functionality
 //! using the `vodozemac` cryptographic library.
-//!
-//! This implements the m.megolm_backup.v1.curve25519-aes-sha2 algorithm
-//! described in the Matrix [spec].
-//!
-//! More details can be found in the official [vodozemac documentation].
-//!
-//! [spec]: https://spec.matrix.org/v1.11/client-server-api/#backup-algorithm-mmegolm_backupv1curve25519-aes-sha2
-//! [vodozemac documentation]: https://docs.rs/vodozemac/latest/vodozemac/pk_encryption/
 
 #![allow(missing_debug_implementations)]
 
@@ -103,6 +95,15 @@ impl PkMessage {
 }
 
 /// A class representing a public-key encryption instance.
+///
+/// This implements the encryption part of the
+/// `m.megolm_backup.v1.curve25519-aes-sha2` algorithm described in the Matrix
+/// [spec].
+///
+/// More details can be found in the official [vodozemac documentation].
+///
+/// [spec]: https://spec.matrix.org/v1.11/client-server-api/#backup-algorithm-mmegolm_backupv1curve25519-aes-sha2
+/// [vodozemac documentation]: https://docs.rs/vodozemac/latest/vodozemac/pk_encryption/
 #[wasm_bindgen]
 pub struct PkEncryption {
     inner: pk_encryption::PkEncryption,
@@ -129,6 +130,15 @@ impl PkEncryption {
 }
 
 /// A class representing a public-key decryption instance.
+///
+/// This implements the decryption part of the
+/// `m.megolm_backup.v1.curve25519-aes-sha2` algorithm described in the Matrix
+/// [spec].
+///
+/// More details can be found in the official [vodozemac documentation].
+///
+/// [spec]: https://spec.matrix.org/v1.11/client-server-api/#backup-algorithm-mmegolm_backupv1curve25519-aes-sha2
+/// [vodozemac documentation]: https://docs.rs/vodozemac/latest/vodozemac/pk_encryption/
 #[wasm_bindgen]
 pub struct PkDecryption {
     inner: pk_encryption::PkDecryption,
