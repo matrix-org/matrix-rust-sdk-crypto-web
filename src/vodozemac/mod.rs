@@ -2,7 +2,7 @@
 
 use matrix_sdk_crypto::vodozemac::{self, base64_decode, base64_encode};
 use wasm_bindgen::prelude::*;
-use zeroize::Zeroize;
+use zeroize::{Zeroize, Zeroizing};
 
 use crate::impl_from_to_inner;
 
@@ -148,12 +148,10 @@ impl Curve25519SecretKey {
         let length = slice.len();
 
         if length == 32 {
-            let mut key = [0u8; 32];
+            let mut key = Zeroizing::new([0u8; 32]);
             key.copy_from_slice(slice);
 
             let inner = vodozemac::Curve25519SecretKey::from_slice(&key);
-
-            key.zeroize();
 
             Ok(Self { inner })
         } else {
