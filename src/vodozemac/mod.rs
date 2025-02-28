@@ -132,7 +132,7 @@ impl Curve25519SecretKey {
     }
 
     /// Converts the secret key into a raw byte vector.
-    #[wasm_bindgen(js_name = "toVec")]
+    #[wasm_bindgen(js_name = "toUint8Array")]
     pub fn to_vec(&self) -> Vec<u8> {
         let mut bytes = self.inner.to_bytes();
         let vec = bytes.to_vec();
@@ -143,7 +143,7 @@ impl Curve25519SecretKey {
     }
 
     /// Creates a `Curve25519SecretKey` from a raw byte slice.
-    #[wasm_bindgen(js_name = "fromSlice")]
+    #[wasm_bindgen(js_name = "fromUint8Array")]
     pub fn from_slice(slice: &[u8]) -> Result<Self, JsError> {
         let length = slice.len();
 
