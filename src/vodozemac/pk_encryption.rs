@@ -15,33 +15,6 @@ pub struct PkMessage {
     inner: pk_encryption::Message,
 }
 
-/// The base64-encoded variant of a `PkMessage`.
-///
-/// This can be useful if the encrypted message should be put into JSON.
-#[wasm_bindgen(getter_with_clone)]
-pub struct Base64EncodedPkMessage {
-    /// The base64-encoded ciphertext.
-    pub ciphertext: String,
-    /// The base64-encoded message authentication code (MAC).
-    pub mac: String,
-    /// The base64-encoded ephemeral public key.
-    #[wasm_bindgen(js_name = "ephemeralKey")]
-    pub ephemeral_key: String,
-}
-
-#[wasm_bindgen]
-impl Base64EncodedPkMessage {
-    /// Creates a new base64-encoded encrypted message from its parts.
-    #[wasm_bindgen(constructor)]
-    pub fn new(ciphertext: &str, mac: &str, ephemeral_key: &str) -> Self {
-        Self {
-            ciphertext: ciphertext.to_owned(),
-            mac: mac.to_owned(),
-            ephemeral_key: ephemeral_key.to_owned(),
-        }
-    }
-}
-
 #[wasm_bindgen]
 impl PkMessage {
     /// Returns the raw ciphertext as a byte vector.
@@ -91,6 +64,33 @@ impl PkMessage {
         let ephemeral_key = self.inner.ephemeral_key.to_base64();
 
         Base64EncodedPkMessage { ciphertext, mac, ephemeral_key }
+    }
+}
+
+/// The base64-encoded variant of a `PkMessage`.
+///
+/// This can be useful if the encrypted message should be put into JSON.
+#[wasm_bindgen(getter_with_clone)]
+pub struct Base64EncodedPkMessage {
+    /// The base64-encoded ciphertext.
+    pub ciphertext: String,
+    /// The base64-encoded message authentication code (MAC).
+    pub mac: String,
+    /// The base64-encoded ephemeral public key.
+    #[wasm_bindgen(js_name = "ephemeralKey")]
+    pub ephemeral_key: String,
+}
+
+#[wasm_bindgen]
+impl Base64EncodedPkMessage {
+    /// Creates a new base64-encoded encrypted message from its parts.
+    #[wasm_bindgen(constructor)]
+    pub fn new(ciphertext: &str, mac: &str, ephemeral_key: &str) -> Self {
+        Self {
+            ciphertext: ciphertext.to_owned(),
+            mac: mac.to_owned(),
+            ephemeral_key: ephemeral_key.to_owned(),
+        }
     }
 }
 
