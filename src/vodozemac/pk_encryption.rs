@@ -17,12 +17,12 @@ pub struct PkMessage {
 
 #[wasm_bindgen]
 impl PkMessage {
-    /// Returns the raw ciphertext as a byte vector.
+    /// Returns the raw ciphertext as a `Uint8Array`.
     pub fn ciphertext(&self) -> Vec<u8> {
         self.inner.ciphertext.clone()
     }
 
-    /// Returns the raw message authentication code (MAC) as a byte vector.
+    /// Returns the raw message authentication code (MAC) as a `Uint8Array`.
     pub fn mac(&self) -> Vec<u8> {
         self.inner.mac.clone()
     }
@@ -186,7 +186,7 @@ impl PkDecryption {
             .map_err(|_| JsError::new("the plaintext contains invalid unicode characters"))
     }
 
-    /// Decrypts an encrypted message and returns the raw byte vector.
+    /// Decrypts an encrypted message and returns the raw `Uint8Array`.
     pub fn decrypt(&self, message: &PkMessage) -> Result<Vec<u8>, JsError> {
         Ok(self.inner.decrypt(&message.inner)?)
     }
